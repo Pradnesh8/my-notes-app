@@ -87,10 +87,22 @@ function App() {
     console.log("Delete note called for Id:" + id);
     // setNotes([Notes.filter((note) => note.id !== id)]);
   }
+  const [theme, setTheme] = useState('light');
+  const toggleTheme = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  };
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
   return (
-    <div className="App">
-      <Header onToggle={() => setAddNoteToggle(!AddNoteToggle)} text={AddNoteToggle ? 'Close' : 'New'} />
+    <div className={`App ${theme}`}>
+      <Header onToggle={() => setAddNoteToggle(!AddNoteToggle)} text={AddNoteToggle ? 'Close' : 'New'} toggleThemeN={() => toggleTheme()} />
       <h1>Welcome to My notes app!</h1>
+      <button onClick={toggleTheme}>Toggle Theme</button>
       {Notes.length === 0 && <h3>No notes added yet!</h3>}
       {
         AddNoteToggle && <AddNote onSave={AddNoteForm} />

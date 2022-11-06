@@ -3,6 +3,64 @@
 *{
   font-family: 'Poppins', 'sans-serif';
 }
+.switchMode {
+  display: inline-block;
+  height: fit-content;
+  margin: 0.1rem;
+  transition: background 0.2s linear;
+}
+.switchMode .dark {
+  background-color: #292c35;
+}
+.switchMode .checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.switchMode .label {
+  width: 2.5rem;
+  height: auto;
+  background-color: #111;
+  display: flex;
+  border-radius: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  transform: scale(1.5);
+}
+
+.switchMode .ball {
+  width: 1.35rem;
+  height: 1.35rem;
+  background-color: white;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+/*  target the elemenent after the label*/
+.switchMode .checkbox:checked + .label .ball{
+  transform: translateX(24px);
+}
+
+.switchMode .fa-moon {
+  color: pink;
+}
+
+.switchMode .fa-sun {
+  color: yellow;
+}
+.dark {
+  background-color: #333;
+  color: #fff;
+}
+.light {
+  background-color: #fff;
+  color: #333;
+}
 
 body {
   margin: 0;
@@ -47,7 +105,7 @@ header h3{
 .notes-deck{
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: flex-start;
 }
 /* Note styling */
@@ -70,6 +128,9 @@ header h3{
 .note-body{
   /* border: 1px solid rgb(238, 228, 88); */
   padding: 0.2rem 0;
+  word-break: break-word;
+  max-height: 10vh;
+  overflow-y: auto;
 }
 .note-icon{
   cursor: pointer;
@@ -97,8 +158,43 @@ input[type="text"], textarea{
 .editNoteForm{
   width: 100%;
 }
+@media screen and (max-width: 1200px) {
+  .App{
+    width: 70vw;
+  }
+  .note-card{
+    width: 42%;
+  }
+  .notes-deck{
+    justify-content: space-between;
+  }
+}
+@media screen and (max-width: 800px) {
+  .App{
+    width: 80vw;
+  }
+  .notes-deck {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+  .note-card{
+    width: 45%;
+    margin: 1rem 0;
+  }
+  footer{
+    width: 100%;
+    text-align: start;
+    font-size: 0.9rem;
+  }
+}
 
 @media screen and (max-width: 600px) {
+  .App{
+    width: 70vw;
+  }
   .notes-deck{
     display: flex;
     flex-direction: column;
