@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { AiTwotoneEdit, AiTwotoneDelete } from "react-icons/ai"
-const Note = ({ Note, onDelete, onEdit }) => {
+const Note = ({ Note, onDelete, onEdit, toggleView }) => {
     const [toggleEditNote, settoggleEditNote] = useState(false);
     const [Title, setTitle] = useState(Note.header);
     const [NoteContent, setNoteContent] = useState(Note.body);
@@ -18,9 +18,10 @@ const Note = ({ Note, onDelete, onEdit }) => {
     // Show date on Hover
     const [hovered, setHovered] = useState(false);
     const toggleHover = () => setHovered(!hovered);
+    const isGrid = toggleView === "grid"
     return (
         <>
-            <div className="note-card" onMouseEnter={toggleHover} onMouseLeave={toggleHover}>
+            <div className={`${isGrid ? 'note-card' : 'note-card-list-view'}`} onMouseEnter={toggleHover} onMouseLeave={toggleHover}>
                 <div className="icons" style={{ position: 'absolute', top: 0, right: 0, paddingTop: '0.2rem', paddingRight: '0.2rem' }} >
                     <AiTwotoneEdit onClick={() => settoggleEditNote(!toggleEditNote)} className="note-icon" style={{ marginRight: '0.2rem' }} />
                     <AiTwotoneDelete onClick={() => onDelete(Note.id)} className="note-icon" />
@@ -29,16 +30,25 @@ const Note = ({ Note, onDelete, onEdit }) => {
                 <div className="note-head">
                     {Note.header}
                 </div>
-                <div className="note-body">
-                    {Note.body}
-                </div>
                 {
-                    hovered &&
+                    isGrid &&
+                    <div className="note-body">
+                        {Note.body}
+                    </div>
+                }
+
+                {
+                    (hovered && isGrid) &&
                     <div className="note-date" style={hovered ? { backgroundColor: "yellow", width: "100%", fontSize: "0.8rem", textAlign: "center" } : {}}>
                         {new Date(Note.date).toLocaleString()}
                     </div>
                 }
-
+                {
+                    !isGrid &&
+                    <div style={{ position: "absolute", display: 'flex', justifyContent: 'center', bottom: "-20%", right: "25%", width: "40%", margin: "0 2vw", backgroundColor: "yellow", fontSize: "0.8rem", textAlign: "center" }}>
+                        {new Date(Note.date).toLocaleString()}
+                    </div>
+                }
             </div>
             {
                 toggleEditNote &&
