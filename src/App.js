@@ -95,6 +95,14 @@ function App() {
       setTheme('light');
     }
   };
+  const [view, setView] = useState('grid');
+  const toggleView = (v) => {
+    if (v === 'grid') {
+      setView('grid');
+    } else {
+      setView('list');
+    }
+  };
   useEffect(() => {
     document.body.className = theme;
   }, [theme]);
@@ -102,12 +110,21 @@ function App() {
     <div className={`App ${theme}`}>
       <Header onToggle={() => setAddNoteToggle(!AddNoteToggle)} text={AddNoteToggle ? 'Close' : 'New'} toggleThemeN={() => toggleTheme()} />
       <h1>Welcome to My notes app!</h1>
-      <button onClick={toggleTheme}>Toggle Theme</button>
+      <div className="view-toggle">
+        <div className="view-toggle-switch">
+          <div className={`icon-bg ${view === "grid" ? "icon-bg-selected" : ""}`} onClick={() => toggleView("grid")}>
+            <img src="assets/grid-icon.svg" alt="grid" />
+          </div>
+          <div className={`icon-bg ${view === "list" ? "icon-bg-selected" : ""}`} onClick={() => toggleView("list")}>
+            <img src="assets/list-icon.svg" alt="list" />
+          </div>
+        </div>
+      </div>
       {Notes.length === 0 && <h3>No notes added yet!</h3>}
       {
         AddNoteToggle && <AddNote onSave={AddNoteForm} />
       }
-      <Notelist Notes={Notes} onDelete={delteNote} onEdit={editNote} />
+      <Notelist Notes={Notes} onDelete={delteNote} onEdit={editNote} toggleView={view} />
       <Footer />
     </div>
   );
