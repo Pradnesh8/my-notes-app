@@ -1,7 +1,62 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
-*{
-  font-family: 'Poppins', 'sans-serif';
+* {
+  font-family: "Poppins", "sans-serif";
+}
+.view-toggle {
+  display: flex;
+  justify-content: flex-end;
+}
+.view-toggle-switch {
+  display: flex;
+  width: 8vw;
+  justify-content: center;
+  align-items: center;
+}
+.icon-bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2rem;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+.icon-bg-selected {
+  background-color: rgb(238, 228, 88);
+}
+
+.notes-deck-list-view {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  align-items: center;
+  justify-content: flex-start;
+}
+.note-card-list-view {
+  position: relative;
+  margin: 1rem 0.5rem;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border: 1px solid rgb(238, 228, 88);
+  padding: 0.5rem;
+  width: 100%;
+  width: -moz-available; /* WebKit-based browsers will ignore this. */
+  width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+  width: fill-available;
+}
+
+.icon-div-list-view {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding-top: 0.4rem;
+  padding-right: 0.2rem;
+}
+.note-body-list-view {
+  display: none;
 }
 .switchMode {
   display: inline-block;
@@ -42,7 +97,7 @@
 }
 
 /*  target the elemenent after the label*/
-.switchMode .checkbox:checked + .label .ball{
+.switchMode .checkbox:checked + .label .ball {
   transform: translateX(24px);
 }
 
@@ -65,13 +120,13 @@
 body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.App{
+.App {
   position: relative;
   min-height: 85vh;
   width: 50vw;
@@ -81,35 +136,35 @@ body {
   border: 1px solid rgb(238, 228, 88);
 }
 /* Header syling */
-header{
+header {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-header h3{
+header h3 {
   margin: 0;
   font-size: 1.2rem;
 }
-.btn{
+.btn {
   cursor: pointer;
   height: fit-content;
   width: fit-content;
   background-color: black;
-  border:0;
+  border: 0;
   color: #ffffff;
   padding: 0.5rem 1rem;
   border-radius: 0.3rem;
 }
 /* Notelis styling */
-.notes-deck{
+.notes-deck {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
 }
 /* Note styling */
-.note-card{
+.note-card {
   position: relative;
   margin: 1rem 0.5rem;
   height: auto;
@@ -121,56 +176,59 @@ header h3{
   border: 1px solid rgb(238, 228, 88);
   padding: 0.5rem;
 }
-.note-head{
+.note-head {
   font-size: 1.2rem;
   font-weight: bold;
+  width: 80%;
 }
-.note-body{
+.note-body {
   /* border: 1px solid rgb(238, 228, 88); */
   padding: 0.2rem 0;
   word-break: break-word;
   max-height: 10vh;
   overflow-y: auto;
 }
-.note-icon{
+.note-icon {
   cursor: pointer;
-  font-size:1.2rem;
-  padding:0.3rem; 
-  border-radius:'50%';
-  background-color:black;
-  color:white;
+  font-size: 1.2rem;
+  padding: 0.3rem;
+  border-radius: "50%";
+  background-color: black;
+  color: white;
 }
 /* Footer styling */
-footer{
+footer {
   width: 100%;
   position: absolute;
   text-align: center;
   bottom: 0;
 }
 /* Addnote styling */
-input[type="text"], textarea{
+input[type="text"],
+textarea {
   width: 100%;
   border: 1px solid rgb(238, 228, 88);
   padding: 0.3rem 0.2rem;
   margin-bottom: 0.3rem;
 }
 /* Editnote styling */
-.editNoteForm{
+.editNoteForm {
   width: 100%;
 }
 @media screen and (max-width: 1200px) {
-  .App{
+  .App {
     width: 70vw;
   }
-  .note-card{
+  .note-card {
     width: 42%;
   }
-  .notes-deck{
+  .notes-deck {
     justify-content: space-between;
+    align-items: flex-start;
   }
 }
 @media screen and (max-width: 800px) {
-  .App{
+  .App {
     width: 80vw;
   }
   .notes-deck {
@@ -178,13 +236,13 @@ input[type="text"], textarea{
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
-}
-  .note-card{
+    align-items: flex-start;
+  }
+  .note-card {
     width: 45%;
     margin: 1rem 0;
   }
-  footer{
+  footer {
     width: 100%;
     text-align: start;
     font-size: 0.9rem;
@@ -192,21 +250,21 @@ input[type="text"], textarea{
 }
 
 @media screen and (max-width: 600px) {
-  .App{
+  .App {
     width: 70vw;
   }
-  .notes-deck{
+  .notes-deck {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
   }
-  .note-card{
+  .note-card {
     width: 96%;
     margin: 1rem 0;
   }
-  footer{
+  footer {
     width: 100%;
     text-align: start;
     font-size: 0.9rem;
